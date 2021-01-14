@@ -3,7 +3,7 @@ package com.training.loginmvvm
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.training.loginmvvm.auth.AuthActivity
+import com.training.loginmvvm.ui.auth.AuthActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
