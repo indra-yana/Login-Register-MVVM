@@ -20,7 +20,7 @@ import com.training.loginmvvm.repository.BaseRepository
 abstract class BaseFragment<VM : ViewModel, VB : ViewBinding, BR : BaseRepository> : Fragment() {
 
     protected lateinit var viewModel : VM
-    protected lateinit var vieBinding : VB
+    protected lateinit var viewBinding : VB
     protected val remoteDataSource = RemoteDataSource()
 
     override fun onCreateView(
@@ -28,10 +28,10 @@ abstract class BaseFragment<VM : ViewModel, VB : ViewBinding, BR : BaseRepositor
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        vieBinding = getViewBinding(inflater, container)
+        viewBinding = getViewBinding(inflater, container)
         viewModel = ViewModelProvider(this, ViewModelFactory(getRepository())).get(getViewModel())
 
-        return vieBinding.root
+        return viewBinding.root
     }
 
     abstract fun getViewModel(): Class<VM>
