@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.training.loginmvvm.network.RemoteDataSource
 import com.training.loginmvvm.repository.BaseRepository
 
 /****************************************************
@@ -17,7 +19,9 @@ import com.training.loginmvvm.repository.BaseRepository
 
 abstract class BaseFragment<VM : ViewModel, VB : ViewBinding, BR : BaseRepository> : Fragment() {
 
+    protected lateinit var viewModel : VM
     protected lateinit var vieBinding : VB
+    protected val remoteDataSource = RemoteDataSource()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +29,7 @@ abstract class BaseFragment<VM : ViewModel, VB : ViewBinding, BR : BaseRepositor
         savedInstanceState: Bundle?
     ): View? {
         vieBinding = getViewBinding(inflater, container)
+        viewModel = ViewModelProvider(this, ViewModelFactory(getRepository())).get(getViewModel())
 
         return vieBinding.root
     }
