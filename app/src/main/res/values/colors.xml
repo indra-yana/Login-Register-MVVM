@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2e87eb</color>
+    <color name="colorPrimaryDark">#2464AC</color>
+    <color name="colorAccent">#2e87eb</color>
+
+    <color name="colorPrimaryDarkTransparent">#992464AC</color>
+
+    <color name="colorTextDefault">#131313</color>
+    <color name="colorTextLabelDefault">#353535</color>
+    <color name="colorTextHintDefault">#434343</color>
+
+    <color name="colorTextWhite">#FFFFFF</color>
+    <color name="colorTextGrey">#CACACA</color>
+
+</resources>
