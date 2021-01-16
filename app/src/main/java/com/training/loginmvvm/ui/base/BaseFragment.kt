@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.training.loginmvvm.network.RemoteDataSource
 import com.training.loginmvvm.repository.BaseRepository
+import com.training.loginmvvm.utils.UserPreferences
 
 /****************************************************
  * Created by Indra Muliana (indra.ndra26@gmail.com)
@@ -19,6 +20,7 @@ import com.training.loginmvvm.repository.BaseRepository
 
 abstract class BaseFragment<VM : ViewModel, VB : ViewBinding, BR : BaseRepository> : Fragment() {
 
+    protected lateinit var userPreferences: UserPreferences
     protected lateinit var viewModel : VM
     protected lateinit var viewBinding : VB
     protected val remoteDataSource = RemoteDataSource()
@@ -28,6 +30,7 @@ abstract class BaseFragment<VM : ViewModel, VB : ViewBinding, BR : BaseRepositor
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        userPreferences = UserPreferences.getInstance(requireContext())     // UserPreferences(requireContext())
         viewBinding = getViewBinding(inflater, container)
         viewModel = ViewModelProvider(this, ViewModelFactory(getRepository())).get(getViewModel())
 
