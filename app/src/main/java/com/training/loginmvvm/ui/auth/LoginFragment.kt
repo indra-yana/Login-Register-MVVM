@@ -7,13 +7,17 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import com.training.loginmvvm.databinding.FragmentLoginBinding
 import com.training.loginmvvm.datasources.remote.AuthApi
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.repository.AuthRepository
 import com.training.loginmvvm.ui.BaseFragment
+import com.training.loginmvvm.utils.enable
+import com.training.loginmvvm.utils.handleApiError
+import com.training.loginmvvm.utils.showOrHidePassword
+import com.training.loginmvvm.utils.visible
 import com.training.loginmvvm.viewmodel.AuthViewModel
-import com.training.loginmvvm.utils.*
 import kotlinx.coroutines.launch
 
 class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepository>() {
@@ -45,6 +49,13 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         viewBinding.btnLogin.setOnClickListener {
             login()
         }
+
+        viewBinding.btnRegister.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            requireView().findNavController().navigate(action)
+        }
+
+        viewBinding.ivShowHidePassword.showOrHidePassword(viewBinding.etPassword)
 
     }
 
