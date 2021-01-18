@@ -3,7 +3,6 @@ package com.training.loginmvvm.ui.home
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.training.loginmvvm.databinding.FragmentHomeBinding
 import com.training.loginmvvm.datasources.remote.Resource
@@ -12,6 +11,7 @@ import com.training.loginmvvm.repository.UserRepository
 import com.training.loginmvvm.responses.User
 import com.training.loginmvvm.ui.base.BaseFragment
 import com.training.loginmvvm.ui.viewmodel.HomeViewModel
+import com.training.loginmvvm.utils.handleApiError
 import com.training.loginmvvm.utils.visible
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -24,17 +24,13 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
 
         viewModel.getUser()
         viewModel.user.observe(viewLifecycleOwner, Observer {
+            viewBinding.pbLoading.visible(it is Resource.Loading)
             when(it) {
                 is Resource.Success -> {
-                    viewBinding.pbLoading.visible( false)
                     updateUI(it.value.user)
                 }
-                is Resource.Loading -> {
-                    viewBinding.pbLoading.visible(true)
-                }
                 is Resource.Failure -> {
-                    viewBinding.pbLoading.visible(false)
-                    Toast.makeText(requireContext(), "failed to get User!", Toast.LENGTH_SHORT).show()
+                    handleApiError(it)
                 }
             }
         })
