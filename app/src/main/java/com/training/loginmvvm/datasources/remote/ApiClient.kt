@@ -19,15 +19,23 @@ class ApiClient {
     companion object {
         //        private const val BASE_URL = "http://192.168.10.1:8002/api/"
         private const val BASE_URL = "http://192.168.100.8:8002/api/"
-        private const val API_KEY = "";
+        private const val API_KEY = "your_secret_api_key";
     }
 
     fun <Api> buildApi(api: Class<Api>, authToken: String? = null): Api {
         // Request interceptor
         val requestInterceptor = Interceptor { chain ->
+            val urlBuilder = chain.request()
+                .url
+                .newBuilder()
+                .addQueryParameter("api_key", API_KEY)
+                .build()
+
             val requestHeaders = chain.request()
                 .newBuilder()
+                .url(urlBuilder)
                 .addHeader("Authorization", "Bearer $authToken")
+                .addHeader("Accept", "application/json")
                 .build()
 
             return@Interceptor chain.proceed(requestHeaders)
