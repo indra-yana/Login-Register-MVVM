@@ -9,4 +9,5 @@
     <string name="text_register">Register</string>
     <string name="text_enter_name">Name</string>
     <string name="text_welcome">Welcome</string>
+    <string name="text_welcome_user">Welcome User!</string>
 </resources>

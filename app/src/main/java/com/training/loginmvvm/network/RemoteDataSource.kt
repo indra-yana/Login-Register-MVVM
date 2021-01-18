@@ -16,7 +16,8 @@ import java.util.concurrent.TimeUnit
 class RemoteDataSource {
 
     companion object {
-        private const val BASE_URL = "http://192.168.10.1:8002/api/"
+//        private const val BASE_URL = "http://192.168.10.1:8002/api/"
+        private const val BASE_URL = "http://192.168.100.8:8002/api/"
     }
 
     fun <Api> buildApi(api: Class<Api>): Api {

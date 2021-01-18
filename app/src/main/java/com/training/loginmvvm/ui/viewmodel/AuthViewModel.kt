@@ -26,5 +26,10 @@ class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
         }
     }
 
+    fun saveAuthToken(authToken: String) {
+        viewModelScope.launch {
+            repository.saveAuthToken(authToken)
+        }
+    }
 
 }
