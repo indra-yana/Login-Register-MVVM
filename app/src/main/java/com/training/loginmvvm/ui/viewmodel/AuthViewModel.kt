@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.training.loginmvvm.network.Resource
+import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.repository.AuthRepository
 import com.training.loginmvvm.responses.LoginResponse
 import kotlinx.coroutines.launch

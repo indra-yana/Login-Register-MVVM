@@ -1,4 +1,4 @@
-package com.training.loginmvvm.network
+package com.training.loginmvvm.datasources.remote
 
 import com.training.loginmvvm.responses.LoginResponse
 import retrofit2.http.Field

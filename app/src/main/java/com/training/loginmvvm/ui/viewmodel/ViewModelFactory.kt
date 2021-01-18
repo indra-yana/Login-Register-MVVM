@@ -1,12 +1,10 @@
-package com.training.loginmvvm.ui.base
+package com.training.loginmvvm.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.training.loginmvvm.repository.AuthRepository
 import com.training.loginmvvm.repository.BaseRepository
 import com.training.loginmvvm.repository.UserRepository
-import com.training.loginmvvm.ui.viewmodel.HomeViewModel
-import com.training.loginmvvm.ui.viewmodel.AuthViewModel
 import java.lang.IllegalArgumentException
 
 /****************************************************

@@ -1,4 +1,4 @@
-package com.training.loginmvvm.network
+package com.training.loginmvvm.datasources.remote
 
 import com.training.loginmvvm.BuildConfig
 import okhttp3.Interceptor
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
  * https://gitlab.com/indra-yana
  ****************************************************/
 
-class RemoteDataSource {
+class ApiClient {
 
     companion object {
         //        private const val BASE_URL = "http://192.168.10.1:8002/api/"

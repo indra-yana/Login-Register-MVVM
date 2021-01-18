@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.training.loginmvvm.databinding.FragmentHomeBinding
-import com.training.loginmvvm.network.Resource
-import com.training.loginmvvm.network.UserApi
+import com.training.loginmvvm.datasources.remote.Resource
+import com.training.loginmvvm.datasources.remote.UserApi
 import com.training.loginmvvm.repository.UserRepository
 import com.training.loginmvvm.responses.User
 import com.training.loginmvvm.ui.base.BaseFragment
@@ -62,7 +62,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
     override fun getRepository(): UserRepository {
         val token = runBlocking { userPreferences.authToken.first() }
 
-        return UserRepository(remoteDataSource.buildApi(UserApi::class.java, token))
+        return UserRepository(apiClient.buildApi(UserApi::class.java, token))
     }
 
 }

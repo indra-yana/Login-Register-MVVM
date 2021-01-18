@@ -1,4 +1,4 @@
-package com.training.loginmvvm.network
+package com.training.loginmvvm.datasources.remote
 
 import okhttp3.ResponseBody
 
