@@ -1,16 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <LinearLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@drawable/bg_layout_header"
+        android:elevation="@dimen/_5sdp"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
+        <TextView
+            android:id="@+id/tvLoginTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:fontFamily="@font/poppins_light"
+            android:includeFontPadding="false"
+            android:text="@string/text_home"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="@dimen/_24ssp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutHeader">
+
+        <TextView
+            android:id="@+id/tvWelcomeUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/text_welcome_user"
+            android:textSize="@dimen/_24ssp" />
+
+        <TableLayout
+            android:id="@+id/userTable"
+            android:layout_width="@dimen/_280sdp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_12sdp"
+            android:stretchColumns="*">
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TextDefault"
+                    android:text="ID" />
+
+                <TextView
+                    android:id="@+id/tvID"
+                    style="@style/TextDefault"
+                    tools:text="0" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TextDefault"
+                    android:text="Name" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/TextDefault"
+                    tools:text="John Doe" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/TextDefault"
+                    android:text="Email" />
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    style="@style/TextDefault"
+                    tools:text="example@mail.com" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/btnLogout"
+            style="@style/ButtonPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text="@string/text_logout" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pbLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/text_welcome_user"
-        android:textSize="@dimen/_24ssp" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

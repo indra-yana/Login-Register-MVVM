@@ -1,21 +1,68 @@
 package com.training.loginmvvm.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import com.training.loginmvvm.R
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import com.training.loginmvvm.databinding.FragmentHomeBinding
+import com.training.loginmvvm.network.Resource
+import com.training.loginmvvm.network.UserApi
+import com.training.loginmvvm.repository.UserRepository
+import com.training.loginmvvm.responses.User
+import com.training.loginmvvm.ui.base.BaseFragment
+import com.training.loginmvvm.ui.viewmodel.HomeViewModel
+import com.training.loginmvvm.utils.visible
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserRepository>() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        viewModel.getUser()
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+            when(it) {
+                is Resource.Success -> {
+                    viewBinding.pbLoading.visible( false)
+                    updateUI(it.value.user)
+                }
+                is Resource.Loading -> {
+                    viewBinding.pbLoading.visible(true)
+                }
+                is Resource.Failure -> {
+                    viewBinding.pbLoading.visible(false)
+                    Toast.makeText(requireContext(), "failed to get User!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
+
+    private fun updateUI(user: User) {
+        with(viewBinding) {
+            tvID.text = user.id.toString()
+            tvName.text = user.name
+            tvEmail.text = user.email
+        }
+    }
+
+    override fun getViewModel(): Class<HomeViewModel> {
+        return HomeViewModel::class.java
+    }
+
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(inflater, container, false)
+    }
+
+    override fun getRepository(): UserRepository {
+        val token = runBlocking { userPreferences.authToken.first() }
+
+        return UserRepository(remoteDataSource.buildApi(UserApi::class.java, token))
     }
 
 }

@@ -30,7 +30,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             viewBinding.pbLoading.visible(false)
             when(it) {
                 is Resource.Success -> {
-                    viewModel.saveAuthToken(it.value.user.access_token)
+                    viewModel.saveAuthToken(it.value.user.access_token!!)
                     Toast.makeText(requireContext(), "Login Successfully!", Toast.LENGTH_SHORT).show()
                 }
                 is Resource.Failure -> {

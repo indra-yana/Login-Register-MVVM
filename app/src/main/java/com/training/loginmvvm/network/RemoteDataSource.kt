@@ -1,6 +1,7 @@
 package com.training.loginmvvm.network
 
 import com.training.loginmvvm.BuildConfig
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,23 +17,42 @@ import java.util.concurrent.TimeUnit
 class RemoteDataSource {
 
     companion object {
-//        private const val BASE_URL = "http://192.168.10.1:8002/api/"
+        //        private const val BASE_URL = "http://192.168.10.1:8002/api/"
         private const val BASE_URL = "http://192.168.100.8:8002/api/"
+        private const val API_KEY = "";
     }
 
-    fun <Api> buildApi(api: Class<Api>): Api {
+    fun <Api> buildApi(api: Class<Api>, authToken: String? = null): Api {
+        // Request interceptor
+        val requestInterceptor = Interceptor { chain ->
+            val requestHeaders = chain.request()
+                .newBuilder()
+                .addHeader("Authorization", "Bearer $authToken")
+                .build()
+
+            return@Interceptor chain.proceed(requestHeaders)
+        }
+
         // Add Logging interceptor
-        val loggingInterceptor = OkHttpClient.Builder().also {
-            if (BuildConfig.DEBUG) {
-                val logging = HttpLoggingInterceptor()
-                logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-                it.addInterceptor(logging)
+        val loggingInterceptor = HttpLoggingInterceptor().apply {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        }
+
+        // OkHttpClient
+        val okHttpClient = OkHttpClient.Builder()
+            .apply {
+                if (BuildConfig.DEBUG) {
+                    addInterceptor(loggingInterceptor)
+                }
+
+                addInterceptor(requestInterceptor)
+                connectTimeout(60, TimeUnit.SECONDS)
             }
-        }.connectTimeout(60, TimeUnit.SECONDS).build()
+            .build()
 
         return Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(loggingInterceptor)
+            .client(okHttpClient)
             .build()
             .create(api)
     }

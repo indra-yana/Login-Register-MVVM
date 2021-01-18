@@ -10,4 +10,6 @@
     <string name="text_enter_name">Name</string>
     <string name="text_welcome">Welcome</string>
     <string name="text_welcome_user">Welcome User!</string>
+    <string name="text_logout">Logout</string>
+    <string name="text_home">Home</string>
 </resources>
