@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
 import com.training.loginmvvm.R
 import com.training.loginmvvm.ui.home.HomeActivity
-import com.training.loginmvvm.utils.UserPreferences
+import com.training.loginmvvm.datasources.local.UserPreferences
 import com.training.loginmvvm.utils.startNewActivity
 
 class AuthActivity : AppCompatActivity() {

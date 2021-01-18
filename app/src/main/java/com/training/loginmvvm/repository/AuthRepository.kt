@@ -2,8 +2,8 @@ package com.training.loginmvvm.repository
 
 import com.training.loginmvvm.datasources.remote.AuthApi
 import com.training.loginmvvm.datasources.remote.Resource
-import com.training.loginmvvm.responses.LoginResponse
-import com.training.loginmvvm.utils.UserPreferences
+import com.training.loginmvvm.model.responses.LoginResponse
+import com.training.loginmvvm.datasources.local.UserPreferences
 
 /****************************************************
  * Created by Indra Muliana (indra.ndra26@gmail.com)

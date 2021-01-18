@@ -1,11 +1,11 @@
-package com.training.loginmvvm.ui.viewmodel
+package com.training.loginmvvm.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.repository.AuthRepository
-import com.training.loginmvvm.responses.LoginResponse
+import com.training.loginmvvm.model.responses.LoginResponse
 import kotlinx.coroutines.launch
 
 /****************************************************

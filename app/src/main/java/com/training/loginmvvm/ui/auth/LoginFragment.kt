@@ -11,8 +11,8 @@ import com.training.loginmvvm.databinding.FragmentLoginBinding
 import com.training.loginmvvm.datasources.remote.AuthApi
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.repository.AuthRepository
-import com.training.loginmvvm.ui.base.BaseFragment
-import com.training.loginmvvm.ui.viewmodel.AuthViewModel
+import com.training.loginmvvm.ui.BaseFragment
+import com.training.loginmvvm.viewmodel.AuthViewModel
 import com.training.loginmvvm.utils.*
 import kotlinx.coroutines.launch
 

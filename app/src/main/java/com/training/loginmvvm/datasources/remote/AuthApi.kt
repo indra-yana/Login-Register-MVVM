@@ -1,6 +1,6 @@
 package com.training.loginmvvm.datasources.remote
 
-import com.training.loginmvvm.responses.LoginResponse
+import com.training.loginmvvm.model.responses.LoginResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST

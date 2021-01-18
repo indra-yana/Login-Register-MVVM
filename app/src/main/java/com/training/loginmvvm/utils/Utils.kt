@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.ui.auth.LoginFragment
-import com.training.loginmvvm.ui.base.BaseFragment
+import com.training.loginmvvm.ui.BaseFragment
 
 /****************************************************
  * Created by Indra Muliana (indra.ndra26@gmail.com)

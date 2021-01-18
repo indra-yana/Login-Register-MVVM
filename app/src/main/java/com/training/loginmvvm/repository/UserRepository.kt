@@ -2,7 +2,7 @@ package com.training.loginmvvm.repository
 
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.datasources.remote.UserApi
-import com.training.loginmvvm.responses.LoginResponse
+import com.training.loginmvvm.model.responses.LoginResponse
 
 /****************************************************
  * Created by Indra Muliana (indra.ndra26@gmail.com)

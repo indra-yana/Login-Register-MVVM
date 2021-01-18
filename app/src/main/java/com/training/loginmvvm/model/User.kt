@@ -1,4 +1,4 @@
-package com.training.loginmvvm.responses
+package com.training.loginmvvm.model
 
 data class User(
     val access_token: String?,

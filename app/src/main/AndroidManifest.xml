@@ -17,7 +17,7 @@
         tools:targetApi="q">
         <activity android:name=".ui.home.HomeActivity"></activity>
         <activity android:name=".ui.auth.AuthActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

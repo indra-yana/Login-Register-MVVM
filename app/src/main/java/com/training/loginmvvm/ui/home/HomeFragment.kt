@@ -8,9 +8,9 @@ import com.training.loginmvvm.databinding.FragmentHomeBinding
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.datasources.remote.UserApi
 import com.training.loginmvvm.repository.UserRepository
-import com.training.loginmvvm.responses.User
-import com.training.loginmvvm.ui.base.BaseFragment
-import com.training.loginmvvm.ui.viewmodel.HomeViewModel
+import com.training.loginmvvm.model.User
+import com.training.loginmvvm.ui.BaseFragment
+import com.training.loginmvvm.viewmodel.HomeViewModel
 import com.training.loginmvvm.utils.handleApiError
 import com.training.loginmvvm.utils.visible
 import kotlinx.coroutines.flow.first

@@ -1,4 +1,4 @@
-package com.training.loginmvvm.ui.viewmodel
+package com.training.loginmvvm.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.training.loginmvvm.datasources.remote.UserApi

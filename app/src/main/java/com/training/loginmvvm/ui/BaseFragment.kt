@@ -1,4 +1,4 @@
-package com.training.loginmvvm.ui.base
+package com.training.loginmvvm.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +12,9 @@ import com.training.loginmvvm.datasources.remote.ApiClient
 import com.training.loginmvvm.datasources.remote.UserApi
 import com.training.loginmvvm.repository.BaseRepository
 import com.training.loginmvvm.ui.auth.AuthActivity
-import com.training.loginmvvm.ui.viewmodel.BaseViewModel
-import com.training.loginmvvm.ui.viewmodel.ViewModelFactory
-import com.training.loginmvvm.utils.UserPreferences
+import com.training.loginmvvm.viewmodel.BaseViewModel
+import com.training.loginmvvm.viewmodel.ViewModelFactory
+import com.training.loginmvvm.datasources.local.UserPreferences
 import com.training.loginmvvm.utils.startNewActivity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -39,9 +39,7 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding, BR : BaseRepos
     ): View? {
         userPreferences = UserPreferences.getInstance(requireContext()) // UserPreferences(requireContext())
         viewBinding = getViewBinding(inflater, container)
-        viewModel = ViewModelProvider(this,
-            ViewModelFactory(getRepository())
-        ).get(getViewModel())
+        viewModel = ViewModelProvider(this, ViewModelFactory(getRepository())).get(getViewModel())
 
         lifecycleScope.launch {
             userPreferences.authToken.first()

@@ -1,8 +1,9 @@
-package com.training.loginmvvm
+package com.training.loginmvvm.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.training.loginmvvm.R
 import com.training.loginmvvm.ui.auth.AuthActivity
 
 class MainActivity : AppCompatActivity() {
