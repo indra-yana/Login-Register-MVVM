@@ -2,7 +2,6 @@ package com.training.loginmvvm.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.repository.UserRepository
@@ -15,7 +14,7 @@ import kotlinx.coroutines.launch
  * https://gitlab.com/indra-yana
  ****************************************************/
 
-class HomeViewModel(private val repository: UserRepository) : ViewModel() {
+class HomeViewModel(private val repository: UserRepository) : BaseViewModel(repository) {
 
     private val _user: MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
     val user: LiveData<Resource<LoginResponse>> get() = _user

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.ui.auth.LoginFragment
+import com.training.loginmvvm.ui.base.BaseFragment
 
 /****************************************************
  * Created by Indra Muliana (indra.ndra26@gmail.com)
@@ -55,7 +56,7 @@ fun Fragment.handleApiError(failure: Resource.Failure, retry: (() -> Unit)? = nu
             if (this is LoginFragment) {
                 requireView().snackBar("You've entered incorrect email or password!")
             } else {
-                // TODO: Perform logout operation here
+                (this as BaseFragment<*, *, *>).logout()
             }
         }
         failure.errorCode == 404 -> {

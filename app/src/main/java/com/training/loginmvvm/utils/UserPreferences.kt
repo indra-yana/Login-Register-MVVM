@@ -3,6 +3,7 @@ package com.training.loginmvvm.utils
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.clear
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
@@ -44,4 +45,9 @@ class UserPreferences(context: Context) {
         }
     }
 
+    suspend fun clearAuthToken() {
+        dataStore.edit {
+            it.clear()
+        }
+    }
 }

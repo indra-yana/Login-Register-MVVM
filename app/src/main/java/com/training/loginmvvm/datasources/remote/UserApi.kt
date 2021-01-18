@@ -1,6 +1,7 @@
 package com.training.loginmvvm.datasources.remote
 
 import com.training.loginmvvm.responses.LoginResponse
+import okhttp3.ResponseBody
 import retrofit2.http.GET
 
 /****************************************************
@@ -12,6 +13,9 @@ import retrofit2.http.GET
 interface UserApi {
 
     @GET("user")
-    suspend fun getUSer() : LoginResponse
+    suspend fun getUSer(): LoginResponse
+
+    @GET("logout")
+    suspend fun logout(): ResponseBody
 
 }

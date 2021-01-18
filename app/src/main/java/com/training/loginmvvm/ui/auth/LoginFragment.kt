@@ -31,7 +31,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                     }
                 }
                 is Resource.Failure -> {
-                    handleApiError(it)
+                    handleApiError(it, retry = { login() })
                 }
             }
         })
@@ -43,13 +43,17 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
 
         viewBinding.btnLogin.enable(false)
         viewBinding.btnLogin.setOnClickListener {
-            val email = viewBinding.etEmail.text.toString().trim()
-            val password = viewBinding.etPassword.text.toString().trim()
-
-            // TODO: add input validation
-            viewModel.login(email, password)
+            login()
         }
 
+    }
+
+    private fun login() {
+        val email = viewBinding.etEmail.text.toString().trim()
+        val password = viewBinding.etPassword.text.toString().trim()
+
+        // TODO: add input validation
+        viewModel.login(email, password)
     }
 
     override fun getViewModel(): Class<AuthViewModel> {

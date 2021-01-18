@@ -1,8 +1,10 @@
 package com.training.loginmvvm.repository
 
 import com.training.loginmvvm.datasources.remote.Resource
+import com.training.loginmvvm.datasources.remote.UserApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.ResponseBody
 import retrofit2.HttpException
 
 /****************************************************
@@ -27,6 +29,12 @@ abstract class BaseRepository {
                     }
                 }
             }
+        }
+    }
+
+    suspend fun logout(api: UserApi) : Resource<ResponseBody> {
+        return safeApiCall {
+            api.logout()
         }
     }
 

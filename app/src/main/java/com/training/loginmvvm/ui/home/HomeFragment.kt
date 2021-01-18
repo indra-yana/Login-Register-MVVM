@@ -22,7 +22,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.getUser()
+        getUser()
         viewModel.user.observe(viewLifecycleOwner, Observer {
             viewBinding.pbLoading.visible(it is Resource.Loading)
             when(it) {
@@ -30,10 +30,18 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
                     updateUI(it.value.user)
                 }
                 is Resource.Failure -> {
-                    handleApiError(it)
+                    handleApiError(it, retry = { getUser() })
                 }
             }
         })
+
+        viewBinding.btnLogout.setOnClickListener {
+            logout()
+        }
+    }
+
+    private fun getUser() {
+        viewModel.getUser()
     }
 
     private fun updateUI(user: User) {

@@ -5,14 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.training.loginmvvm.datasources.remote.ApiClient
+import com.training.loginmvvm.datasources.remote.UserApi
 import com.training.loginmvvm.repository.BaseRepository
+import com.training.loginmvvm.ui.auth.AuthActivity
+import com.training.loginmvvm.ui.viewmodel.BaseViewModel
 import com.training.loginmvvm.ui.viewmodel.ViewModelFactory
 import com.training.loginmvvm.utils.UserPreferences
+import com.training.loginmvvm.utils.startNewActivity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -22,7 +25,7 @@ import kotlinx.coroutines.launch
  * https://gitlab.com/indra-yana
  ****************************************************/
 
-abstract class BaseFragment<VM : ViewModel, VB : ViewBinding, BR : BaseRepository> : Fragment() {
+abstract class BaseFragment<VM : BaseViewModel, VB : ViewBinding, BR : BaseRepository> : Fragment() {
 
     protected lateinit var userPreferences: UserPreferences
     protected lateinit var viewModel: VM
@@ -45,6 +48,17 @@ abstract class BaseFragment<VM : ViewModel, VB : ViewBinding, BR : BaseRepositor
         }
 
         return viewBinding.root
+    }
+
+    fun logout() {
+        lifecycleScope.launch {
+            val authToken = userPreferences.authToken.first()
+            val api = apiClient.buildApi(UserApi::class.java, authToken)
+
+            viewModel.logout(api)
+            userPreferences.clearAuthToken()
+            requireActivity().startNewActivity(AuthActivity::class.java)
+        }
     }
 
     abstract fun getViewModel(): Class<VM>
