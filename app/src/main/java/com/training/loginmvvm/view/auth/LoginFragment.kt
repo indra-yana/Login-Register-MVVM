@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import com.training.loginmvvm.R
 import com.training.loginmvvm.databinding.FragmentLoginBinding
 import com.training.loginmvvm.datasources.remote.AuthApi
 import com.training.loginmvvm.datasources.remote.Resource
@@ -50,6 +51,8 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
                 val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
                 requireView().findNavController().navigate(action)
             }
+
+            layoutHeader.tvHeaderTitle.text = getString(R.string.text_login)
         }
 
     }

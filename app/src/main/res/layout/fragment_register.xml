@@ -10,8 +10,8 @@
         android:id="@+id/ivBack"
         android:layout_width="@dimen/_28sdp"
         android:layout_height="@dimen/_28sdp"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_6sdp"
         android:background="@drawable/bg_back_button"
         android:contentDescription="@string/app_name"
         android:elevation="@dimen/_6sdp"
@@ -21,30 +21,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/colorTextWhite" />
 
-    <LinearLayout
+    <include
         android:id="@+id/layoutHeader"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        android:background="@drawable/bg_layout_header"
-        android:elevation="@dimen/_5sdp"
-        android:foreground="?selectableItemBackground"
-        android:gravity="center_horizontal|center_vertical"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tvLoginTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_14sdp"
-            android:fontFamily="@font/poppins_light"
-            android:includeFontPadding="false"
-            android:text="@string/text_register"
-            android:textAllCaps="false"
-            android:textColor="@color/colorTextWhite"
-            android:textSize="@dimen/_24ssp" />
-
-    </LinearLayout>
+        layout="@layout/layout_header" />
 
     <LinearLayout
         android:id="@+id/layoutContainerLogin"

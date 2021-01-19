@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.training.loginmvvm.R
 import com.training.loginmvvm.databinding.FragmentHomeBinding
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.datasources.remote.UserApi
@@ -35,9 +36,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
             }
         })
 
-        viewBinding.btnLogout.setOnClickListener {
-            logout()
+        with(viewBinding) {
+            btnLogout.setOnClickListener { logout() }
+            layoutHeader.tvHeaderTitle.text = getString(R.string.text_home)
         }
+
     }
 
     private fun getUser() {
