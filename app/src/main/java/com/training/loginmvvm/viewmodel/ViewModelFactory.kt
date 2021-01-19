@@ -2,9 +2,9 @@ package com.training.loginmvvm.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.training.loginmvvm.repository.AuthRepository
-import com.training.loginmvvm.repository.BaseRepository
-import com.training.loginmvvm.repository.UserRepository
+import com.training.loginmvvm.repositories.AuthRepository
+import com.training.loginmvvm.repositories.BaseRepository
+import com.training.loginmvvm.repositories.UserRepository
 import java.lang.IllegalArgumentException
 
 /****************************************************

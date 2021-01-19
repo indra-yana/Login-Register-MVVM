@@ -1,8 +1,8 @@
-package com.training.loginmvvm.repository
+package com.training.loginmvvm.repositories
 
 import com.training.loginmvvm.datasources.remote.AuthApi
 import com.training.loginmvvm.datasources.remote.Resource
-import com.training.loginmvvm.model.responses.LoginResponse
+import com.training.loginmvvm.models.responses.LoginResponse
 import com.training.loginmvvm.datasources.local.UserPreferences
 
 /****************************************************

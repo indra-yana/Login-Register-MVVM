@@ -1,4 +1,4 @@
-package com.training.loginmvvm.ui
+package com.training.loginmvvm.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.training.loginmvvm.datasources.remote.ApiClient
 import com.training.loginmvvm.datasources.remote.UserApi
-import com.training.loginmvvm.repository.BaseRepository
-import com.training.loginmvvm.ui.auth.AuthActivity
+import com.training.loginmvvm.repositories.BaseRepository
+import com.training.loginmvvm.view.auth.AuthActivity
 import com.training.loginmvvm.viewmodel.BaseViewModel
 import com.training.loginmvvm.viewmodel.ViewModelFactory
 import com.training.loginmvvm.datasources.local.UserPreferences

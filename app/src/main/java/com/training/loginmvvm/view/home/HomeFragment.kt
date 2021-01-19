@@ -1,4 +1,4 @@
-package com.training.loginmvvm.ui.home
+package com.training.loginmvvm.view.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,12 +7,11 @@ import androidx.lifecycle.Observer
 import com.training.loginmvvm.databinding.FragmentHomeBinding
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.datasources.remote.UserApi
-import com.training.loginmvvm.repository.UserRepository
-import com.training.loginmvvm.model.User
-import com.training.loginmvvm.ui.BaseFragment
+import com.training.loginmvvm.repositories.UserRepository
+import com.training.loginmvvm.models.User
+import com.training.loginmvvm.view.BaseFragment
 import com.training.loginmvvm.viewmodel.HomeViewModel
 import com.training.loginmvvm.utils.handleApiError
-import com.training.loginmvvm.utils.visible
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 

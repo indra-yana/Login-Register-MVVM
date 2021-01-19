@@ -1,4 +1,4 @@
-package com.training.loginmvvm.repository
+package com.training.loginmvvm.repositories
 
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.datasources.remote.UserApi

@@ -1,4 +1,4 @@
-package com.training.loginmvvm.ui.auth
+package com.training.loginmvvm.view.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.os.Looper
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
 import com.training.loginmvvm.R
-import com.training.loginmvvm.ui.home.HomeActivity
+import com.training.loginmvvm.view.home.HomeActivity
 import com.training.loginmvvm.datasources.local.UserPreferences
 import com.training.loginmvvm.utils.startNewActivity
 

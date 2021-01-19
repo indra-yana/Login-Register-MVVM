@@ -2,7 +2,7 @@ package com.training.loginmvvm.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.training.loginmvvm.datasources.remote.UserApi
-import com.training.loginmvvm.repository.BaseRepository
+import com.training.loginmvvm.repositories.BaseRepository
 
 /****************************************************
  * Created by Indra Muliana (indra.ndra26@gmail.com)

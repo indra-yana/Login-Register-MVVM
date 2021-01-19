@@ -1,6 +1,6 @@
 package com.training.loginmvvm.datasources.remote
 
-import com.training.loginmvvm.model.responses.LoginResponse
+import com.training.loginmvvm.models.responses.LoginResponse
 import okhttp3.ResponseBody
 import retrofit2.http.GET
 

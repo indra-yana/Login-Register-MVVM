@@ -1,8 +1,8 @@
-package com.training.loginmvvm.repository
+package com.training.loginmvvm.repositories
 
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.datasources.remote.UserApi
-import com.training.loginmvvm.model.responses.LoginResponse
+import com.training.loginmvvm.models.responses.LoginResponse
 
 /****************************************************
  * Created by Indra Muliana (indra.ndra26@gmail.com)

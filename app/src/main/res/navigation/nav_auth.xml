@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.training.loginmvvm.ui.auth.LoginFragment"
+        android:name="com.training.loginmvvm.view.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.training.loginmvvm.ui.auth.RegisterFragment"
+        android:name="com.training.loginmvvm.view.auth.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
 

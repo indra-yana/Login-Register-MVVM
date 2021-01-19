@@ -1,4 +1,4 @@
-package com.training.loginmvvm.ui.home
+package com.training.loginmvvm.view.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
