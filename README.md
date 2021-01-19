@@ -9,7 +9,7 @@ Android Login - Register Using MVVM Design Pattern
 - Kotlin Coroutines
 - Android Navigation Component
 - Android Preferences
-- Retrofit2 for Client API
+- Retrofit2 for API Client
 - Authentication From Backend API
 
 ## Notes
