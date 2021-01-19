@@ -12,4 +12,6 @@
     <string name="text_welcome_user">Welcome User!</string>
     <string name="text_logout">Logout</string>
     <string name="text_home">Home</string>
+    <string name="text_confirm_password">Confirm Password</string>
+    <string name="text_password_2">Password 2</string>
 </resources>

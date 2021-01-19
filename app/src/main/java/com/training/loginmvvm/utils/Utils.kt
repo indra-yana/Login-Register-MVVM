@@ -77,17 +77,20 @@ fun Fragment.handleApiError(failure: Resource.Failure, retry: (() -> Unit)? = nu
 }
 
 
-fun ImageView.showOrHidePassword(passwordField: EditText) {
+fun ImageView.showOrHidePassword(passwordField: EditText, passwordField2: EditText? = null) {
     setOnClickListener {
         if (passwordField.transformationMethod == PasswordTransformationMethod.getInstance()) {
             setImageResource(R.drawable.ic_eye_invisible)
             passwordField.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            passwordField2?.transformationMethod = HideReturnsTransformationMethod.getInstance()
         } else if (passwordField.transformationMethod == HideReturnsTransformationMethod.getInstance()) {
             setImageResource(R.drawable.ic_eye_visible)
             passwordField.transformationMethod = PasswordTransformationMethod.getInstance()
+            passwordField2?.transformationMethod = PasswordTransformationMethod.getInstance()
         }
 
         passwordField.setSelection(passwordField.text.length)
+        passwordField2?.setSelection(passwordField2.text.length)
     }
 }
 
