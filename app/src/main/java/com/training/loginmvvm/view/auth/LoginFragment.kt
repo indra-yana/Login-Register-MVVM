@@ -1,10 +1,10 @@
 package com.training.loginmvvm.view.auth
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -13,10 +13,10 @@ import com.training.loginmvvm.datasources.remote.AuthApi
 import com.training.loginmvvm.datasources.remote.Resource
 import com.training.loginmvvm.repositories.AuthRepository
 import com.training.loginmvvm.utils.enable
-import com.training.loginmvvm.view.BaseFragment
 import com.training.loginmvvm.utils.handleApiError
 import com.training.loginmvvm.utils.showOrHidePassword
 import com.training.loginmvvm.utils.visible
+import com.training.loginmvvm.view.BaseFragment
 import com.training.loginmvvm.viewmodel.AuthViewModel
 import kotlinx.coroutines.launch
 
@@ -27,6 +27,7 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
             viewBinding.pbLoading.visible(it is Resource.Loading)
+            viewBinding.btnLogin.enable(it !is Resource.Loading)
             when(it) {
                 is Resource.Success -> {
                     lifecycleScope.launch {
@@ -40,31 +41,36 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
             }
         })
 
-        viewBinding.etPassword.addTextChangedListener {
-            val email = viewBinding.etEmail.text.toString().trim()
-            viewBinding.btnLogin.enable(email.isNotEmpty() && it.toString().isNotEmpty())
-        }
+        with(viewBinding) {
+            ivShowHidePassword.showOrHidePassword(viewBinding.etPassword)
 
-        viewBinding.btnLogin.enable(false)
-        viewBinding.btnLogin.setOnClickListener {
-            login()
-        }
+            btnLogin.setOnClickListener { login() }
 
-        viewBinding.btnRegister.setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
-            requireView().findNavController().navigate(action)
+            btnRegister.setOnClickListener {
+                val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+                requireView().findNavController().navigate(action)
+            }
         }
-
-        viewBinding.ivShowHidePassword.showOrHidePassword(viewBinding.etPassword)
 
     }
 
     private fun login() {
-        val email = viewBinding.etEmail.text.toString().trim()
-        val password = viewBinding.etPassword.text.toString().trim()
+        with(viewBinding) {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
 
-        // TODO: add input validation
-        viewModel.login(email, password)
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(requireContext(), "Please enter valid email address!", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            if (password.isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter the password!", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            viewModel.login(email, password)
+        }
     }
 
     override fun getViewModel(): Class<AuthViewModel> {

@@ -51,12 +51,12 @@ class RegisterFragment : BaseFragment<AuthViewModel, FragmentRegisterBinding, Au
             val password2 = etPassword2.text.toString().trim()
 
             if (name.isEmpty()) {
-                Toast.makeText(requireContext(), "Please Enter the name!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please enter the name!", Toast.LENGTH_SHORT).show()
                 return
             }
 
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Toast.makeText(requireContext(), "Please Enter Valid Email address!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please enter valid email address!", Toast.LENGTH_SHORT).show()
                 return
             }
 
