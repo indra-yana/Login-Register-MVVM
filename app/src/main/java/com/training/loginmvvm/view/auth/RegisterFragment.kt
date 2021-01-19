@@ -40,6 +40,10 @@ class RegisterFragment : BaseFragment<AuthViewModel, FragmentRegisterBinding, Au
             ivShowHidePassword.showOrHidePassword(etPassword, etPassword2)
 
             btnRegister.setOnClickListener { register() }
+
+            ivBack.setOnClickListener {
+                requireActivity().onBackPressed()
+            }
         }
     }
 
