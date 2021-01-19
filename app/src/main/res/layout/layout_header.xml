@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_50sdp"
+    android:layout_height="?actionBarSize"
     android:background="@drawable/bg_layout_header"
     android:elevation="@dimen/_5sdp"
     android:gravity="center_horizontal|center_vertical"
