@@ -12,6 +12,7 @@ import com.training.loginmvvm.models.User
 import com.training.loginmvvm.view.BaseFragment
 import com.training.loginmvvm.viewmodel.HomeViewModel
 import com.training.loginmvvm.utils.handleApiError
+import com.training.loginmvvm.utils.visible
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
