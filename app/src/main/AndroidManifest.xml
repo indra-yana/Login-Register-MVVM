@@ -15,8 +15,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="q">
-        <activity android:name=".view.home.HomeActivity"></activity>
-        <activity android:name=".view.auth.AuthActivity" />
+        <activity android:name=".view.home.HomeActivity" />
+        <activity
+            android:name=".view.auth.AuthActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
