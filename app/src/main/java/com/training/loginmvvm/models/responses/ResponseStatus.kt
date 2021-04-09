@@ -1,4 +1,4 @@
-package com.training.loginmvvm.datasources.remote
+package com.training.loginmvvm.models.responses
 
 import okhttp3.ResponseBody
 
@@ -8,13 +8,13 @@ import okhttp3.ResponseBody
  * https://gitlab.com/indra-yana
  ****************************************************/
 
-sealed class Resource<out T> {
+sealed class ResponseStatus<out T> {
 
-    data class Success<out T>(val value: T) : Resource<T>()
+    data class Success<out T>(val value: T) : ResponseStatus<T>()
     data class Failure(
         val isNetworkError: Boolean,
         val errorCode: Int?,
         val errorBody: ResponseBody?
-    ) : Resource<Nothing>()
-    object Loading : Resource<Nothing>()
+    ) : ResponseStatus<Nothing>()
+    object Loading : ResponseStatus<Nothing>()
 }

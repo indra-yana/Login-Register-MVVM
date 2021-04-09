@@ -3,7 +3,7 @@ package com.training.loginmvvm.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.training.loginmvvm.datasources.remote.Resource
+import com.training.loginmvvm.models.responses.ResponseStatus
 import com.training.loginmvvm.repositories.UserRepository
 import com.training.loginmvvm.models.responses.LoginResponse
 import kotlinx.coroutines.launch
@@ -16,12 +16,12 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: UserRepository) : BaseViewModel(repository) {
 
-    private val _user: MutableLiveData<Resource<LoginResponse>> = MutableLiveData()
-    val user: LiveData<Resource<LoginResponse>> get() = _user
+    private val _user: MutableLiveData<ResponseStatus<LoginResponse>> = MutableLiveData()
+    val user: LiveData<ResponseStatus<LoginResponse>> get() = _user
 
     fun getUser () {
         viewModelScope.launch {
-            _user.value = Resource.Loading
+            _user.value = ResponseStatus.Loading
             _user.value = repository.getUser()
         }
     }

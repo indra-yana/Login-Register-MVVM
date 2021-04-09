@@ -2,7 +2,7 @@ package com.training.loginmvvm.repositories
 
 import com.training.loginmvvm.datasources.local.UserPreferences
 import com.training.loginmvvm.datasources.remote.AuthApi
-import com.training.loginmvvm.datasources.remote.Resource
+import com.training.loginmvvm.models.responses.ResponseStatus
 import com.training.loginmvvm.models.responses.LoginResponse
 import okhttp3.ResponseBody
 
@@ -14,13 +14,13 @@ import okhttp3.ResponseBody
 
 class AuthRepository(private val api: AuthApi, private val preferences: UserPreferences) : BaseRepository() {
 
-    suspend fun login(email: String, password: String) : Resource<LoginResponse> {
+    suspend fun login(email: String, password: String) : ResponseStatus<LoginResponse> {
         return safeApiCall {
             api.login(email, password)
         }
     }
 
-    suspend fun register(name: String, email: String, password: String, password2: String) : Resource<ResponseBody> {
+    suspend fun register(name: String, email: String, password: String, password2: String) : ResponseStatus<ResponseBody> {
         return safeApiCall {
             api.register(name, email, password, password2)
         }

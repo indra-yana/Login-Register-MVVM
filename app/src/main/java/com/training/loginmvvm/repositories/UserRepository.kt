@@ -1,6 +1,6 @@
 package com.training.loginmvvm.repositories
 
-import com.training.loginmvvm.datasources.remote.Resource
+import com.training.loginmvvm.models.responses.ResponseStatus
 import com.training.loginmvvm.datasources.remote.UserApi
 import com.training.loginmvvm.models.responses.LoginResponse
 
@@ -12,7 +12,7 @@ import com.training.loginmvvm.models.responses.LoginResponse
 
 class UserRepository(private val api: UserApi) : BaseRepository() {
 
-    suspend fun getUser() : Resource<LoginResponse> {
+    suspend fun getUser() : ResponseStatus<LoginResponse> {
         return safeApiCall {
             api.getUSer()
         }

@@ -10,7 +10,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.training.loginmvvm.R
-import com.training.loginmvvm.datasources.remote.Resource
+import com.training.loginmvvm.models.responses.ResponseStatus
 import com.training.loginmvvm.view.BaseFragment
 import com.training.loginmvvm.view.auth.LoginFragment
 
@@ -52,7 +52,7 @@ fun View.snackBar(message: String, action: (() -> Unit)? = null) {
     snackBar.show()
 }
 
-fun Fragment.handleApiError(failure: Resource.Failure, retry: (() -> Unit)? = null) {
+fun Fragment.handleApiError(failure: ResponseStatus.Failure, retry: (() -> Unit)? = null) {
     when {
         failure.isNetworkError -> {
             requireView().snackBar("Please check your internet connection!", retry)

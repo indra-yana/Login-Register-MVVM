@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import com.training.loginmvvm.R
 import com.training.loginmvvm.databinding.FragmentRegisterBinding
 import com.training.loginmvvm.datasources.remote.AuthApi
-import com.training.loginmvvm.datasources.remote.Resource
+import com.training.loginmvvm.models.responses.ResponseStatus
 import com.training.loginmvvm.repositories.AuthRepository
 import com.training.loginmvvm.utils.enable
 import com.training.loginmvvm.utils.handleApiError
@@ -25,13 +25,13 @@ class RegisterFragment : BaseFragment<AuthViewModel, FragmentRegisterBinding, Au
         super.onActivityCreated(savedInstanceState)
 
         viewModel.registerResponse.observe(viewLifecycleOwner, Observer {
-            viewBinding.pbLoading.visible(it is Resource.Loading)
-            viewBinding.btnRegister.enable(it !is Resource.Loading)
+            viewBinding.pbLoading.visible(it is ResponseStatus.Loading)
+            viewBinding.btnRegister.enable(it !is ResponseStatus.Loading)
             when (it) {
-                is Resource.Success -> {
+                is ResponseStatus.Success -> {
                     Toast.makeText(requireContext(), "${it.value}", Toast.LENGTH_SHORT).show()
                 }
-                is Resource.Failure -> {
+                is ResponseStatus.Failure -> {
                     handleApiError(it, retry = { register() })
                 }
             }

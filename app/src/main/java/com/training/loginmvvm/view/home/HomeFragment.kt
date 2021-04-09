@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.training.loginmvvm.R
 import com.training.loginmvvm.databinding.FragmentHomeBinding
-import com.training.loginmvvm.datasources.remote.Resource
+import com.training.loginmvvm.models.responses.ResponseStatus
 import com.training.loginmvvm.datasources.remote.UserApi
 import com.training.loginmvvm.repositories.UserRepository
 import com.training.loginmvvm.models.User
@@ -25,12 +25,12 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding, UserReposi
 
         getUser()
         viewModel.user.observe(viewLifecycleOwner, Observer {
-            viewBinding.pbLoading.visible(it is Resource.Loading)
+            viewBinding.pbLoading.visible(it is ResponseStatus.Loading)
             when(it) {
-                is Resource.Success -> {
+                is ResponseStatus.Success -> {
                     updateUI(it.value.user)
                 }
-                is Resource.Failure -> {
+                is ResponseStatus.Failure -> {
                     handleApiError(it, retry = { getUser() })
                 }
             }

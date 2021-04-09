@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 import com.training.loginmvvm.R
 import com.training.loginmvvm.databinding.FragmentLoginBinding
 import com.training.loginmvvm.datasources.remote.AuthApi
-import com.training.loginmvvm.datasources.remote.Resource
+import com.training.loginmvvm.models.responses.ResponseStatus
 import com.training.loginmvvm.repositories.AuthRepository
 import com.training.loginmvvm.utils.enable
 import com.training.loginmvvm.utils.handleApiError
@@ -27,16 +27,16 @@ class LoginFragment : BaseFragment<AuthViewModel, FragmentLoginBinding, AuthRepo
         super.onActivityCreated(savedInstanceState)
 
         viewModel.loginResponse.observe(viewLifecycleOwner, Observer {
-            viewBinding.pbLoading.visible(it is Resource.Loading)
-            viewBinding.btnLogin.enable(it !is Resource.Loading)
+            viewBinding.pbLoading.visible(it is ResponseStatus.Loading)
+            viewBinding.btnLogin.enable(it !is ResponseStatus.Loading)
             when(it) {
-                is Resource.Success -> {
+                is ResponseStatus.Success -> {
                     lifecycleScope.launch {
                         viewModel.saveAuthToken(it.value.user.access_token!!)
                         Toast.makeText(requireContext(), "Login Successfully!", Toast.LENGTH_SHORT).show()
                     }
                 }
-                is Resource.Failure -> {
+                is ResponseStatus.Failure -> {
                     handleApiError(it, retry = { login() })
                 }
             }

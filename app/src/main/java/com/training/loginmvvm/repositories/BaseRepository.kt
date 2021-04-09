@@ -1,6 +1,6 @@
 package com.training.loginmvvm.repositories
 
-import com.training.loginmvvm.datasources.remote.Resource
+import com.training.loginmvvm.models.responses.ResponseStatus
 import com.training.loginmvvm.datasources.remote.UserApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,24 +15,24 @@ import retrofit2.HttpException
 
 abstract class BaseRepository {
 
-    suspend fun <T> safeApiCall(apiCall: suspend () -> T): Resource<T> {
+    suspend fun <T> safeApiCall(apiCall: suspend () -> T): ResponseStatus<T> {
         return withContext(Dispatchers.IO) {
             try {
-                Resource.Success(apiCall.invoke())
+                ResponseStatus.Success(apiCall.invoke())
             } catch (throwable: Throwable) {
                 when (throwable) {
                     is HttpException -> {
-                        Resource.Failure(false, throwable.code(), throwable.response()?.errorBody())
+                        ResponseStatus.Failure(false, throwable.code(), throwable.response()?.errorBody())
                     }
                     else -> {
-                        Resource.Failure(true, null, null)
+                        ResponseStatus.Failure(true, null, null)
                     }
                 }
             }
         }
     }
 
-    suspend fun logout(api: UserApi) : Resource<ResponseBody> {
+    suspend fun logout(api: UserApi) : ResponseStatus<ResponseBody> {
         return safeApiCall {
             api.logout()
         }
