@@ -79,4 +79,9 @@ dependencies {
     implementation "com.intuit.sdp:sdp-android:1.0.6"
     implementation "com.intuit.ssp:ssp-android:1.0.6"
 
+    // Viewpager and custom indicator
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
+    implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
+    implementation 'me.relex:circleindicator:2.1.4'
+
 }

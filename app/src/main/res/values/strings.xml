@@ -14,4 +14,6 @@
     <string name="text_home">Home</string>
     <string name="text_confirm_password">Confirm Password</string>
     <string name="text_password_2">Password 2</string>
+    <string name="lorem_ipsum_text">Lorem Ipsum</string>
+    <string name="title_text">Lorem</string>
 </resources>

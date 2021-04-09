@@ -1,7 +1,9 @@
 package com.training.loginmvvm.utils
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
@@ -10,6 +12,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.training.loginmvvm.R
+import com.training.loginmvvm.models.BannerItem
 import com.training.loginmvvm.models.responses.ResponseStatus
 import com.training.loginmvvm.view.BaseFragment
 import com.training.loginmvvm.view.auth.LoginFragment
@@ -92,5 +95,53 @@ fun ImageView.showOrHidePassword(passwordField: EditText, passwordField2: EditTe
         passwordField.setSelection(passwordField.text.length)
         passwordField2?.setSelection(passwordField2.text.length)
     }
+}
+
+fun Int.toDp(): Int = (this / Resources.getSystem().displayMetrics.density).toInt()
+fun Int.toPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+fun Float.cube(): Float = this * this * this
+fun Int.cube(): Int = this * this * this
+
+fun Float.sqr(): Float = this * this
+fun Int.sqr(): Int = this * this
+
+fun cardItemDummyData(context: Context?): MutableList<BannerItem> {
+    return mutableListOf(
+        BannerItem(
+            context?.getString(R.string.title_text) + " items 1", context?.getString(
+                R.string.lorem_ipsum_text
+            ), R.drawable.poster_1
+        ),
+        BannerItem(
+            context?.getString(R.string.title_text) + " items 2", context?.getString(
+                R.string.lorem_ipsum_text
+            ), R.drawable.poster_2
+        ),
+        BannerItem(
+            context?.getString(R.string.title_text) + " items 3", context?.getString(
+                R.string.lorem_ipsum_text
+            ), R.drawable.poster_3
+        ),
+        BannerItem(
+            context?.getString(R.string.title_text) + " items 4", context?.getString(
+                R.string.lorem_ipsum_text
+            ), R.drawable.poster_4
+        ),
+        BannerItem(
+            context?.getString(R.string.title_text) + " items 5", context?.getString(
+                R.string.lorem_ipsum_text
+            ), R.drawable.poster_5
+        )
+    )
+}
+
+fun cardItemDummyDataLarge(context: Context?, amountData: Int): MutableList<BannerItem> {
+    val items = mutableListOf<BannerItem>()
+    (0..amountData).map {
+        items.add(cardItemDummyData(context).random())
+    }
+
+    return items
 }
 
